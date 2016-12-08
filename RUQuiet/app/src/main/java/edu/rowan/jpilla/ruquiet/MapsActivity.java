@@ -46,6 +46,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(rowan).title("Rowan University"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(39.709802, -75.118701) , 16.0f));
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        mMap.setMinZoomPreference(15.0f);
+        mMap.setMaxZoomPreference(18.5f);
 
         Polygon Robinson = mMap.addPolygon(new PolygonOptions()
                 .add(new LatLng(39.710542, -75.120683), new LatLng(39.710309, -75.119969), new LatLng(39.710623, -75.119795), new LatLng(39.710858, -75.120519))

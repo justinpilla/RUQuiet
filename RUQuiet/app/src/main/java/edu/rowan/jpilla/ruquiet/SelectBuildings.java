@@ -23,8 +23,8 @@ public class SelectBuildings extends Activity {
 
         listView = (ListView) findViewById(R.id.listview);
         buildings = new ArrayList();
-        buildings.add("Test");
-        buildings.add("Test2");
+        buildings.add("Robinson Hall");
+        buildings.add("Wilson Hall");
 
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.select_buildings_list, R.id.text1, buildings);
         listView.setAdapter(adapter);
