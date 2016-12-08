@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.PolygonOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    Building robinsonb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        robinsonb = new Building("Rob", new LatLng(39.710542, -75.120683), new LatLng(39.710309, -75.119969), new LatLng(39.710623, -75.119795), new LatLng(39.710858, -75.120519) );
+
+        try {
+            System.out.println("ROB POINTS:" + robinsonb.getCoords().toString());
+        }
+        catch (NullPointerException e){}
     }
 
 
@@ -50,7 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setMaxZoomPreference(18.5f);
 
         Polygon Robinson = mMap.addPolygon(new PolygonOptions()
-                .add(new LatLng(39.710542, -75.120683), new LatLng(39.710309, -75.119969), new LatLng(39.710623, -75.119795), new LatLng(39.710858, -75.120519))
+                .add(robinsonb.getCoords())
                 .strokeColor(Color.RED)
                 .fillColor(Color.argb(100, 0, 0, 255)));
 

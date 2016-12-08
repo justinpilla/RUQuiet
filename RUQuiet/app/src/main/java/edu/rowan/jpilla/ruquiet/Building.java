@@ -11,20 +11,17 @@ import java.util.List;
 
 public class Building {
 
-    String name;
-    List<LatLng> coords;
+    String name = "Default";
+    LatLng[] coords;
     Boolean enabled;
 
-    public Building(){
+    public Building(String n, LatLng... l){
 
-        this.name = "Default";
-        this.coords = new ArrayList<>();
+        this.name = n;
+        this.coords = l;
+
         this.enabled = true;
 
-    }
-
-    public void addtoCoords(LatLng c){
-        coords.add(c);
     }
 
     public String getName() {
@@ -35,12 +32,8 @@ public class Building {
         this.name = name;
     }
 
-    public List<LatLng> getCoords() {
+    public LatLng[] getCoords() {
         return coords;
-    }
-
-    public void setCoords(List<LatLng> coords) {
-        this.coords = coords;
     }
 
     public Boolean getEnabled() {
