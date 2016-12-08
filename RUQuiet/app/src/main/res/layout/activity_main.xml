@@ -20,9 +20,15 @@
         android:textStyle="normal|bold" />
 
     <Button
-        android:text="TEST"
+        android:text="To Map"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tomaps" />
+
+    <Button
+        android:text="Select Buildings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectBuildings" />
 
 </LinearLayout>

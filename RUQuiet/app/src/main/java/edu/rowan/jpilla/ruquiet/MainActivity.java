@@ -10,6 +10,7 @@ import android.widget.Button;
 public class MainActivity extends Activity {
 
     Button tomaps;
+    Button selectBuildings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,15 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(intent);
 
+            }
+        });
+
+        selectBuildings = (Button) findViewById(R.id.selectBuildings);
+        selectBuildings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SelectBuildings.class);
+                startActivity(intent);
             }
         });
     }
