@@ -14,7 +14,7 @@ import java.util.List;
 public class SelectBuildings extends Activity {
 
     ListView listView;
-    List buildings;
+    List<String> buildingNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +22,15 @@ public class SelectBuildings extends Activity {
         setContentView(R.layout.activity_select_buildings);
 
         listView = (ListView) findViewById(R.id.listview);
-        buildings = new ArrayList();
-        buildings.add("Robinson Hall");
-        buildings.add("Wilson Hall");
+        buildingNames = new ArrayList();
 
-        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.select_buildings_list, R.id.text1, buildings);
+        for(Building b : MainActivity.buildingList){
+            buildingNames.add(b.getName());
+        }
+
+
+
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.select_buildings_list, R.id.text1, buildingNames);
         listView.setAdapter(adapter);
     }
 }
