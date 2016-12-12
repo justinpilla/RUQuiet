@@ -1,5 +1,7 @@
 package edu.rowan.jpilla.ruquiet;
 
+import android.widget.CheckBox;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -11,9 +13,12 @@ import java.util.List;
 
 public class Building {
 
+
+
     String name = "Default";
     LatLng[] coords;
     Boolean enabled;
+
 
     public Building(String n, LatLng... l){
 
@@ -21,6 +26,7 @@ public class Building {
         this.coords = l;
 
         this.enabled = true;
+
 
     }
 

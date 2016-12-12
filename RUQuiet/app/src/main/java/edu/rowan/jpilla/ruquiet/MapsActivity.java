@@ -76,9 +76,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         System.out.println("POINTS" + Wilson.getPoints());*/
 
         for (Building b : MainActivity.buildingList){
-            mMap.addPolygon(new PolygonOptions().add(b.getCoords())
-                    .strokeColor(Color.RED)
-                    .fillColor(Color.argb(100, 0, 0, 255)));
+            if (b.getEnabled() == true) {
+                mMap.addPolygon(new PolygonOptions().add(b.getCoords())
+                        .strokeColor(Color.GREEN)
+                        .fillColor(Color.argb(100, 0, 0, 255)));
+            }
+            else
+            {
+                mMap.addPolygon(new PolygonOptions().add(b.getCoords())
+                        .strokeColor(Color.RED)
+                        .fillColor(Color.argb(100, 0, 0, 255)));
+            }
         }
     }
 }
