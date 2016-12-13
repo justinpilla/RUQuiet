@@ -9,7 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="edu.rowan.jpilla.ruquiet.MainActivity">
+    tools:context="edu.rowan.jpilla.ruquiet.MainActivity"
+    android:weightSum="1">
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,19 +18,35 @@
         android:text="RUQuiet Control Panel"
         android:layout_gravity="center"
         android:textSize="30sp"
-        android:textStyle="normal|bold" />
-
-    <Button
-        android:text="To Map"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tomaps" />
+        android:textStyle="normal|bold|italic"
+        android:textAllCaps="false" />
 
     <Button
         android:text="Select Buildings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/selectBuildings" />
+
+    <Button
+        android:text="View Map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tomaps" />
+
+    <CheckBox
+        android:text="Enable Pocket Detection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pocketBox" />
+
+    <TextView
+        android:text="Pocket detection will use the ambient light sensor as well as the accelerometer to determine if your phone is sitting stationary on the desk or in your pocket. If the phone is deemed to be in your pocket, it will be set to vibrate instead of silent."
+        android:layout_width="296dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/pocketText"
+        android:layout_gravity="right"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="0.05" />
 
     <TextView
         android:text="TextView"
