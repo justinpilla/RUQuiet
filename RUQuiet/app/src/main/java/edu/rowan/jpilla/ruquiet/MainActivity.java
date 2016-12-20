@@ -71,7 +71,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     double mLatitude;
     double mLongitude;
     Location currentLoc;
-    String networkName = "Tell My WiFi I Love Her";
+    String networkName = "@string/wifi_network";
     WifiReceiver mReceiver;
     SensorManager mySensorManager;
     Sensor lightSensor;
