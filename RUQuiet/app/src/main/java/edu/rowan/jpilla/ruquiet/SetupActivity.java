@@ -1,6 +1,5 @@
 package edu.rowan.jpilla.ruquiet;
 
-import android.*;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -9,49 +8,48 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 public class SetupActivity extends Activity {
 
+    WifiManager wm;
+    List<WifiConfiguration> configs;
+    boolean wifiRowan = false;
+    boolean gpsDone = false;
+    boolean wiFidone = false;
     private TextView mainText;
     private Button gps;
     private Button wifiButton;
 
-    WifiManager wm;
-    List<WifiConfiguration> configs;
-
-    boolean wifiRowan = false;
-
-    boolean gpsDone = false;
-    boolean wiFidone = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
 
+        wm = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+
+
         mainText = (TextView) findViewById(R.id.mainText);
         gps = (Button) findViewById(R.id.gps);
         wifiButton = (Button) findViewById(R.id.wifi);
 
-        wm = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
-        if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                | ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+        //Checks permissions and WiFi Status. If all requirements are met upon app startup, immediately continues to Control Panel.
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                | ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             gps.setEnabled(false);
             gpsDone = true;
         }
-        if(wm.isWifiEnabled()){
+        if (wm.isWifiEnabled()) {
             wifiButton.setEnabled(false);
             wiFidone = true;
         }
@@ -59,22 +57,18 @@ public class SetupActivity extends Activity {
 
         appReady();
 
+        // Checks to see if RowanSecure is a known network. Also checks to see if WiFi is enabled.
+
         wifiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (wm.isWifiEnabled()){
+                if (wm.isWifiEnabled()) {
                     configs = wm.getConfiguredNetworks();
 
 
-
-
-
-                    Log.d("TEEEST", "TEEEEEEST");
-
-                    for(WifiConfiguration wc : configs){
-                        Log.d("wifiname", "SSIDDDDDDD: " + wc.SSID);
-                        if (wc.SSID.contains("Tell My WiFi I Love Her")){
+                    for (WifiConfiguration wc : configs) {
+                        if (wc.SSID.contains("@string/wifi_network")) {
                             wifiRowan = true;
                             //        Toast.makeText(SetupActivity.this, "WiFi config complete.", Toast.LENGTH_LONG).show();
                             wifiButton.setEnabled(false);
@@ -84,7 +78,7 @@ public class SetupActivity extends Activity {
                         }
                     }
 
-                    if(!wifiRowan){
+                    if (!wifiRowan) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(SetupActivity.this, R.style.MyAlertDialogStyle);
                         builder.setTitle("WiFi Config Error");
                         builder.setMessage("Connect to RowanSecure, then try again.");
@@ -99,8 +93,7 @@ public class SetupActivity extends Activity {
                     }
 
 
-                }
-                else{
+                } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SetupActivity.this, R.style.MyAlertDialogStyle);
                     builder.setTitle("WiFi Config Error");
                     builder.setMessage("Please enable WiFi, then try again.");
@@ -115,12 +108,12 @@ public class SetupActivity extends Activity {
                 }
 
 
-
-
-
                 //       Log.d("WIFI", configs.toString());
             }
         });
+
+
+        // Requests permissions for Location Services
 
         gps.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +121,11 @@ public class SetupActivity extends Activity {
                 ActivityCompat.requestPermissions(SetupActivity.this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             }
         });
+
+
     }
+
+    // Grants permissions
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -154,7 +151,9 @@ public class SetupActivity extends Activity {
 
     }
 
-    public void appReady(){
+    // If conditions are met, proceed to Control Panel
+
+    public void appReady() {
         if (gpsDone && wiFidone) {
             Intent intent = new Intent(SetupActivity.this, MainActivity.class);
             startActivity(intent);
@@ -162,4 +161,6 @@ public class SetupActivity extends Activity {
             return;
         }
     }
+
+
 }

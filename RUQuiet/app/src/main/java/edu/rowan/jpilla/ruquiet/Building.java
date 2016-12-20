@@ -9,6 +9,8 @@ import java.util.List;
 
 /**
  * Created by Justin on 12/8/2016.
+ *
+ * The Building class contains necessary information about each building, such as coordinates and whether or not it is to be considered when silencing the phone.
  */
 
 public class Building {

@@ -31,9 +31,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     /**
      * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
      * If Google Play services is not installed on the device, the user will be prompted to install
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
@@ -51,6 +48,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setMaxZoomPreference(18.5f);
 
 
+
+        // Draw overlay on each building to show what the GPS accounts for.
+        // GREEN = enabled
+        // RED = disabled
+
         for (Building b : MainActivity.buildingList) {
 
             Polygon p;
@@ -66,20 +68,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .fillColor(Color.argb(100, 0, 0, 255)));
             }
 
-         /*   p.setClickable(true);
-            mMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener() {
-                @Override
-                public void onPolygonClick(Polygon polygon) {
-                    if(b.getEnabled() == true){
-                        p.setStrokeColor(Color.RED);
-                        b.setEnabled(false);
-                    }
-                    else{
-                        p.setStrokeColor(Color.GREEN);
-                        b.setEnabled(true);
-                    }
-                }
-            });*/
+
 
 
         }

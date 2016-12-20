@@ -40,7 +40,7 @@
         android:id="@+id/pocketBox" />
 
     <TextView
-        android:text="Pocket detection will use the ambient light sensor as well as the accelerometer to determine if your phone is sitting stationary on the desk or in your pocket. If the phone is deemed to be in your pocket, it will be set to vibrate instead of silent."
+        android:text="Pocket detection will use the ambient light sensor to determine if your phone is sitting stationary on the desk or in your pocket. If the phone is deemed to be in your pocket, it will be set to vibrate instead of silent."
         android:layout_width="296dp"
         android:layout_height="wrap_content"
         android:id="@+id/pocketText"
@@ -52,12 +52,27 @@
         android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/latitudeText" />
+        android:id="@+id/latitudeText"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/longitudeText" />
+
+    <TextView
+        android:text="Current Location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:text="currLocText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/currLocText" />
 
 </LinearLayout>

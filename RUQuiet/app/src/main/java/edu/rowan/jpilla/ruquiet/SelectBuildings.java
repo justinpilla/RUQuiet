@@ -31,6 +31,8 @@ public class SelectBuildings extends Activity {
 
     }
 
+    //Adapter to allow for a list to be populated from the building list in the MainActivity. Custom Adapter incorporates checkboxes that change boolean status in Building class.
+
     private class CustomAdapter extends ArrayAdapter<Building> {
 
         Context context;
